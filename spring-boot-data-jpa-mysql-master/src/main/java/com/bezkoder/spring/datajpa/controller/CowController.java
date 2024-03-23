@@ -60,12 +60,14 @@ public class CowController {
 
 					for (Cowdata1 c : list) {
 						CowData cw = new CowData();
-						//cw.setTemperature(c.getTemperature());
-						//cw.setBpm(Integer.parseInt(c.getBpm().toString()));
-					//	int value = Integer.parseInt((String) c.getBpm());
-						//cw.setBpm(value);
-						//Double s=Double.parseDouble((String) c.getTemperature());
-						//cw.setTemperature(s);
+						String d = c.getTemperature().toString().replaceAll("\"", "");
+						double value = Double.parseDouble(d);
+						cw.setTemperature(value);
+						System.out.println(value);
+						String s=c.getBpm().toString().replaceAll("\"", "");
+						System.out.println(s);
+						int bpm=Integer.parseInt(s);
+						cw.setBpm(bpm);
 						cw.setGps(c.getGps());
 						cw.setId(c.getId());
 						cw.setjMobility(c.getjMobility());
@@ -94,10 +96,14 @@ public class CowController {
 
 	private List<Cowdata1> splitData(String input) {
 		String trimmedString = input.replace("\"data\": ", "");
-		trimmedString = trimmedString.replace("{", "").replace("}", "");
+		String trimmedString2 = trimmedString.replace("\"data\":", "");
+		
+		trimmedString = trimmedString2.replace("{", "").replace("}", "");
 		List<Cowdata1> cowDataList = new ArrayList<>();
 		// System.out.println(trimmedString.trim());
-		String[] objects = trimmedString.split(";");
+		System.out.println(trimmedString.trim());
+		String trimmedString1=trimmedString.trim();
+		String[] objects = trimmedString1.split(";");
 		JsonObject jsonObject = null;
 
 		for (String object : objects) {
@@ -121,7 +127,8 @@ public class CowController {
 					String key = key2.trim();
 					// System.out.println(key);
 					;
-					if (key.trim().equals("TimeStamp")) {
+					System.out.println("Key: " +key );
+					if (key.equals("TimeStamp")) {
 						cow.setTime_stamp(value.toString());
 					}
 					if (key.equalsIgnoreCase("Mobility")) {
