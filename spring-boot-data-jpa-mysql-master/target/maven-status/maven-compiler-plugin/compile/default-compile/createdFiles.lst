@@ -1,0 +1,7 @@
+com\bezkoder\spring\datajpa\controller\Main.class
+com\bezkoder\spring\datajpa\controller\CowController.class
+com\bezkoder\spring\datajpa\controller\Cowdata1.class
+com\bezkoder\spring\datajpa\SpringBootDataJpaApplication.class
+com\bezkoder\spring\datajpa\repository\Cowrepository.class
+com\bezkoder\spring\datajpa\controller\CowData.class
+com\bezkoder\spring\datajpa\controller\Cow2.class
